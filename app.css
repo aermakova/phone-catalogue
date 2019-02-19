@@ -105,3 +105,26 @@ ul.specs dt {
 h1 {
   border-bottom: 1px solid gray;
 }
+.nav{
+  padding: 0 0 60px 0;
+  margin-bottom: 0;
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+}
+.nav__logo{
+  color: #000;
+  font-size: 40px;
+  font-weight: bold;
+}
+.nav__list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+}
+.nav__item{
+  margin-left: 20px;
+}
