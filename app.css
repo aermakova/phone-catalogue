@@ -128,3 +128,9 @@ h1 {
 .nav__item{
   margin-left: 20px;
 }
+
+.js-hidden{
+  opacity: 0;
+  transform: scale(0);
+  position: absolute;
+}
