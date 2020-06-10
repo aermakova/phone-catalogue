@@ -8,6 +8,9 @@ export default class PhoneCatalogue extends Component{
         this._render();
         this._element.addEventListener('click', (event) => {
             this._onPhoneClick(event);
+        });
+        this._element.addEventListener('click', (event) => {
+            this._onBtnClick(event);
         })
     }
 
@@ -18,6 +21,7 @@ export default class PhoneCatalogue extends Component{
         }
         this._onPhoneSelected(phoneElement.dataset.phoneId);
     }
+
     _render() {
         this._element.innerHTML = `
         <ul data-element="phone-item" class="phones">
@@ -25,7 +29,7 @@ export default class PhoneCatalogue extends Component{
             `
             <li class="thumbnail" 
                 data-element="phone" 
-                data-phone-id="${ phone.id }"
+                data-phone-id="${ phone.id}"
                 >
                 <a href="#!/phones/${ phone.id }" class="thumb">
                   <img alt="${ phone.name }" src="${ phone.imageUrl }">
@@ -39,7 +43,6 @@ export default class PhoneCatalogue extends Component{
                 <p>${ phone.snippet }</p>
               </li>
             `).join('') }
-            
         </ul>
     `;
     }
