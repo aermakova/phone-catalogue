@@ -18,9 +18,10 @@ export default class PhonePage {
             element: this._element.querySelector('[data-component="phone-catalogue"]'),
             phones: PhoneService.getPhones(),
         });
-        this._catalog.addListener('click', (event)=> {
-            let elem = event.target.closest('[data-element="phone"]');
-            let phoneDetails = PhoneService.getPhone(elem.dataset.phoneId);
+        this._catalog.addListener('phoneClick', (phoneId)=> {
+            console.log('click from parent 4');
+            console.log(phoneId);
+            let phoneDetails = PhoneService.getPhone(phoneId);
             this._catalog.hide();
             this._viewer.show(phoneDetails);
         });
