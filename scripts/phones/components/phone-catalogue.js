@@ -1,7 +1,7 @@
 import Component from "../../component.js";
 
 export default class PhoneCatalogue extends Component{
-    constructor({ element, phones, phoneSelected }) {
+    constructor({ element, phones, phoneSelected = ()=>{} }) {
         super({ element });
         this._phones = phones;
         this._phoneSelected = phoneSelected;

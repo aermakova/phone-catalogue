@@ -17,12 +17,18 @@ export default class PhonePage {
         this._catalog = new PhoneCatalogue({
             element: this._element.querySelector('[data-component="phone-catalogue"]'),
             phones: PhoneService.getPhones(),
-            phoneSelected: (phoneId) => {
-                let phoneDetails = PhoneService.getPhone(phoneId);
-
+            // phoneSelected: (phoneId) => {
+            //     let phoneDetails = PhoneService.getPhone(phoneId);
+            //
+            //     this._catalog.hide();
+            //     this._viewer.show(phoneDetails);
+            // }
+        });
+        this._catalog._element.addEventListener('click', (event)=> {
+            let elem = event.target.closest('[data-element="phone"]');
+            let phoneDetails = PhoneService.getPhone(elem.dataset.phoneId);
                 this._catalog.hide();
                 this._viewer.show(phoneDetails);
-            }
         });
     }
     _initViewer () {
