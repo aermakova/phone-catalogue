@@ -129,6 +129,18 @@ h1 {
   margin-left: 20px;
 }
 
+.remove-btn{
+    width: 15px;
+    height: 15px;
+    font-size: 10px;
+    text-align: center;
+    padding: 0;
+    color: #fff;
+    background: red;
+    border: 0;
+    border-radius: 5px;
+}
+
 .js-hidden{
   opacity: 0;
   transform: scale(0);

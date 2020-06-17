@@ -2,7 +2,7 @@ import PhoneCatalogue from './components/phone-catalogue.js';
 import PhoneViewer from './components/phone-viewer.js';
 import PhoneService from './services/phone-services.js';
 import PhoneFilter from './components/phone-filter.js';
-import PhoneCart from './components/phone-filter.js';
+import ShoppingCart from './components/shopping-cart.js';
 
 export default class PhonePage {
     constructor({ element }) {
@@ -11,37 +11,33 @@ export default class PhonePage {
         this._initCatalog();
         this._initViewer();
         this._initFilter();
-        this._initCart();
+        this._initShoppingCart();
     }
     _initCatalog() {
-         this._catalog = new PhoneCatalogue({
-             element: this._element.querySelector('[data-component="phone-catalogue"]'),
-             phones: PhoneService.getPhones(),
-             onPhoneSelected: (phoneId) => {
+        this._catalog = new PhoneCatalogue({
+            element: this._element.querySelector('[data-component="phone-catalogue"]'),
+            phones: PhoneService.getPhones(),
+            phoneSelected: (phoneId) => {
                 let phoneDetails = PhoneService.getPhone(phoneId);
+
                 this._catalog.hide();
                 this._viewer.show(phoneDetails);
-                console.log(phoneId);
-             },
-         });
+            }
+        });
     }
     _initViewer () {
         this._viewer = new PhoneViewer({
             element: this._element.querySelector('[data-component="phone-viewer"]'),
-            onBtnClicked: () => {
-                this._viewer.hide();
-                this._catalog.show();
-            }
         });
     }
     _initFilter() {
-        this._viewer = new PhoneViewer({
+        this._filter = new PhoneFilter({
             element: this._element.querySelector('[data-component="phone-filter"]'),
         });
     }
-    _initCart() {
-        this._viewer = new PhoneCart({
-            element: this._element.querySelector('[data-component="phone-cart"]'),
+    _initShoppingCart() {
+        this._cart = new ShoppingCart({
+            element: this._element.querySelector('[data-component="shopping-cart"]'),
         });
     }
     _render() {
@@ -51,7 +47,7 @@ export default class PhonePage {
             <div class="col-md-2">
                 <section data-component="phone-filter"></section>
 
-                <section data-component="phone-cart"></section>
+                <section data-component="shopping-cart"></section>
             </div>
 
             <!--Main content-->

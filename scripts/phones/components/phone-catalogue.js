@@ -1,10 +1,10 @@
 import Component from "../../component.js";
 
 export default class PhoneCatalogue extends Component{
-    constructor({ element, phones, onPhoneSelected }) {
+    constructor({ element, phones, phoneSelected }) {
         super({ element });
         this._phones = phones;
-        this._onPhoneSelected = onPhoneSelected;
+        this._phoneSelected = phoneSelected;
         this._render();
         this._element.addEventListener('click', (event) => {
             this._onPhoneClick(event);
@@ -14,12 +14,23 @@ export default class PhoneCatalogue extends Component{
         })
     }
 
-    _onPhoneClick(event){
-        let phoneElement = event.target.closest('[data-element="phone"]');
-        if (!phoneElement){
+    _onPhoneClick(event) {
+        let phoneElement = event.target.closest('[data-element="phone"]'),
+            phoneBtn = event.target.closest('[data-element="phone-item-add-to-cart"]');
+        if (!phoneElement || phoneBtn){
             return;
         }
-        this._onPhoneSelected(phoneElement.dataset.phoneId);
+        this._phoneSelected(phoneElement.dataset.phoneId);
+    }
+
+    _onBtnClick(event) {
+        let phoneAddToCard = event.target.closest('[data-element="phone-item-add-to-cart"]'),
+            phoneElement = event.target.closest('[data-element="phone"]');
+        if (!phoneAddToCard){
+            return;
+        }
+            console.log(phoneElement.dataset.phoneId);
+            console.log('Add to cart');
     }
 
     _render() {
@@ -35,7 +46,7 @@ export default class PhoneCatalogue extends Component{
                   <img alt="${ phone.name }" src="${ phone.imageUrl }">
                 </a>
                 <div class="phones__btn-buy-wrapper">
-                  <a class="btn btn-success">
+                  <a class="btn btn-success" data-element="phone-item-add-to-cart">
                     Add
                   </a>
                 </div>

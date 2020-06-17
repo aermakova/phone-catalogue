@@ -10,7 +10,7 @@ export default class PhoneFilter extends Component{
         this._element.innerHTML = `
         <p>
             Search:
-            <input>
+            <input data-sort-cataloque>
         </p>
         <p>
             Sort by:
