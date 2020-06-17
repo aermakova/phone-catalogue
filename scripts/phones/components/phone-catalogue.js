@@ -1,10 +1,9 @@
 import Component from "../../component.js";
 
 export default class PhoneCatalogue extends Component{
-    constructor({ element, phones, phoneSelected = ()=>{} }) {
+    constructor({ element, phones }) {
         super({ element });
         this._phones = phones;
-        this._phoneSelected = phoneSelected;
         this._render();
         this._element.addEventListener('click', (event) => {
             this._onPhoneClick(event);
@@ -14,13 +13,16 @@ export default class PhoneCatalogue extends Component{
         })
     }
 
+    addListener(eventName, callback) {
+        this._element.addEventListener(eventName, callback);
+    }
+
     _onPhoneClick(event) {
         let phoneElement = event.target.closest('[data-element="phone"]'),
             phoneBtn = event.target.closest('[data-element="phone-item-add-to-cart"]');
         if (!phoneElement || phoneBtn){
             return;
         }
-        this._phoneSelected(phoneElement.dataset.phoneId);
     }
 
     _onBtnClick(event) {
